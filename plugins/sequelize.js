@@ -10,8 +10,8 @@ const log = require('../config/log')
  * @see https://github.com/lyquocnam/fastify-sequelize
  */
 module.exports = fp(async function (fastify, opts) {
-  fastify.register(require('fastify-sequelize'), db.sequelizeConfig(fastify))
-    .ready(err => {
-      if (err) return fastify.log.error(err.message)
-    })
+  // fastify.register(require('fastify-sequelize'), db.sequelizeConfig(fastify))
+  //   .ready(err => {
+  //     if (err) return fastify.log.error(err.message)
+  //   })
 })
