@@ -45,15 +45,32 @@ const schema = {
     DB_USER: {
       type: 'string'
     },
+    SEQUELIZE_LOG: {
+      type: 'boolean',
+      default: false
+    },
     REDIS_HOST: {
       type: 'string',
       default: '127.0.0.1'
+    },
+    MAIL_HOST: {
+      type: 'string',
+    },
+    MAIL_PORT: {
+      type: 'string',
+    },
+    MAIL_USER: {
+      type: 'string'
+    },
+    MAIL_PASS: {
+      type: 'string'
     },
   }
 }
 
 const options = {
-  confKey: 'config', // optional, default: 'config'
+  confKey: 'env', // optional, default: 'config'
+  dotenv: true,
   schema: schema,
   data: process.env // optional, default: process.env
 }
@@ -67,8 +84,6 @@ const options = {
 module.exports = fp(async function (fastify, opts) {
   fastify.register(fastifyEnv, options)
     .ready((err) => {
-      if (err) fastify.log.error(err.message)
-
-      fastify.log.info(fastify.config) // env json
+      if (err) return fastify.log.error(err.message)
     })
 })

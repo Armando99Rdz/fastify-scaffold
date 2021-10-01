@@ -1,7 +1,6 @@
 'use strict'
 
 const fp = require('fastify-plugin')
-const path = require('path')
 
 /**
  * This plugins expose the API public assets
@@ -9,7 +8,11 @@ const path = require('path')
  * @see https://github.com/fastify/fastify-jwt
  */
 module.exports = fp(async function (fastify, opts) {
-  const appSecret = fastify.config.APP_KEY
+  const appSecret = fastify.env.APP_KEY
+  
+  if (!appSecret) 
+    throw new Error('Error APP_KEY not setted')
+  
   fastify.register(require('fastify-jwt'), {
     secret: appSecret
   })

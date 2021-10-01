@@ -8,6 +8,6 @@ require('dotenv').config()
  *
  */
 module.exports = fp(async function (fastify, opts) {
-  const HOST = fastify.config.REDIS_HOST
+  const HOST = fastify.env.REDIS_HOST
   fastify.register(require('fastify-redis'), { host: HOST })
 })
