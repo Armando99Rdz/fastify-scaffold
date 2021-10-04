@@ -33,6 +33,7 @@
     "fastify-sequelize": "^1.0.4",
     "fastify-static": "^4.2.3",
     "fastify-swagger": "^4.12.3",
+    "fluent-json-schema": "^3.0.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0"
   },

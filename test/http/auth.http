@@ -1,0 +1,21 @@
+
+@baseUrl = http://127.0.0.1:3000/
+@authToken = Y2t0eWhmaTI2MDAwMDJodDMyancwNW43dg.RriPdejpQRt6dsW7QUOcQAX1E4T-Yyjvo2YtJJfXOODemeLT6EN9DgfSd3ml
+
+### Login
+POST {{baseUrl}}auth/login HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "email": "armando@armando.com",
+    "password": "password"
+}
+
+
+### I'm logged in?
+GET {{baseUrl}}auth/me HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: Bearer {{authToken}}

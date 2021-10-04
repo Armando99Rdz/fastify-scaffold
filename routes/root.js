@@ -1,6 +1,6 @@
 'use strict'
 
-const mail = require('../App/Utils/mail')
+const mail = require('../app/utils/mail')
 
 module.exports = async function (fastify, opts) {
   fastify.get('/', async function (request, reply) {
