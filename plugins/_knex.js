@@ -11,7 +11,7 @@ const log = require('../config/log')
  * with migrations, seeders also providing a query builder.
  */
 module.exports = fp(async function (fastify, opts) {
-  fastify.register(require('fastify-knexjs'), db.knexConfig)
+  fastify.register(require('fastify-knexjs'), db.knexConfig(process.env))
     .ready(err => {
       if (err) return fastify.log.error(`${log.prefixApp} ${err.message}`)
       fastify.log.info(`${log.prefixApp} Knex connection done...`)

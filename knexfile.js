@@ -10,10 +10,16 @@ require('dotenv').config()
 
 module.exports = {
 
-  development: db.knexConfig(process.env),
+  development: {
+    ...db.knexConfig(process.env)
+  },
 
-  staging: db.knexConfig(process.env),
+  staging: {
+    ...db.knexConfig(process.env)
+  },
 
-  production: db.knexConfig(process.env)
+  production: {
+    ...db.knexConfig(process.env)
+  }
 
 };

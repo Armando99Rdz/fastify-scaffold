@@ -7,6 +7,36 @@
 const log = require('./log')
 
 module.exports = {
+
+  /**
+   * Prepare knex.js config object
+   * @param {environment} env environment variables object
+   * @returns knex config object
+   */
+   knexConfig: (env) => {
+    return {
+      client: 'mysql',
+      connection: {
+        host: env.DB_HOST,
+        port: env.DB_PORT,
+        user: env.DB_USER,
+        password: env.DB_PASS,
+        database: env.DB_NAME,
+        charset: 'utf8',
+      },
+      pool: {
+        min: 2,
+        max: 10
+      },
+      migrations: {
+        tableName: 'knex_migrations',
+        directory: 'database/migrations',
+      },
+      seeds: {
+        directory: 'database/seeds'
+      }
+    }
+  },
   
   /**
    * Prepare sequelize config object
@@ -33,31 +63,6 @@ module.exports = {
       logging: msg => {
         return app.env.SEQUELIZE_LOG ? app.log.info(`${log.prefixApp} ${msg}`) : false
       },
-    }
-  },
-
-  /**
-   * Prepare knex.js config object
-   * @param {environment} env environment variables object
-   * @returns knex config object
-   */
-  knexConfig: (env) => {
-    return {
-      client: 'mysql',
-      connection: {
-        host: env.DB_HOST,
-        port: env.DB_PORT,
-        user: env.DB_USER,
-        password: env.DB_PASS,
-        database: env.DB_NAME,
-      },
-      pool: {
-        min: 2,
-        max: 10
-      },
-      migrations: {
-        tableName: 'knex_migrations'
-      }
     }
   },
 
