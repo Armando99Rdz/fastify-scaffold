@@ -9,8 +9,16 @@ const authSchema = require('../../app/schemas/auth')
 module.exports = async function (fastify, opts) {
 
   // sign in
-  fastify.post('/login', { schema: authSchema.login }, authService.login(fastify))
+  fastify.post(
+    '/login',
+    { schema: authSchema.login },
+    authService.login(fastify)
+  )
 
   // get user logged in
-  fastify.get('/me', { schema: authSchema.me }, authService.me(fastify))
+  fastify.get(
+    '/me',
+    { schema: authSchema.me, preValidation: [fastify.auth] },
+    authService.me(fastify)
+  )
 }

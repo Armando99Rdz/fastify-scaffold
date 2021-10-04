@@ -1,6 +1,6 @@
 
 @baseUrl = http://127.0.0.1:3000/
-@authToken = Y2t0eWhmaTI2MDAwMDJodDMyancwNW43dg.RriPdejpQRt6dsW7QUOcQAX1E4T-Yyjvo2YtJJfXOODemeLT6EN9DgfSd3ml
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxOSwiaWF0IjoxNjMzMzg0NTM3fQ.Qr6q7_D-rSZaqGCayhVPuF30MxS72fyVoUHLXCTIpoM
 
 ### Login
 POST {{baseUrl}}auth/login HTTP/1.1

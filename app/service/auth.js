@@ -4,6 +4,7 @@
  * Authentication handlers/controllers
  */
 const User = require('../models/User')
+const redis = require('../../config/redis')
 
 module.exports = {
 
@@ -14,8 +15,13 @@ module.exports = {
   login: (app) => {
     return async function (request, reply) {
       try {
-        console.log(request)
-        return await User(app.knex).verified('email', 'x')
+        const token = await app.jwt.sign({ userId: 219 })
+        await app.redis.set(`${redis.authTokenPrefix}${219}`, token)
+
+        return reply.send({
+          msg: 'logged.in',
+          authToken: token,
+        })
   
       } catch (error) {
         console.log(error.message)
@@ -33,13 +39,15 @@ module.exports = {
   me: (app) => {
     return async function (request, reply) {
       try {
+        const redisToken = await app.redis.get(`${redis.authTokenPrefix}${219}`)
+
         return reply.send({
-          body: request.body
+          jwt: request.user,
+          redisToken
         })
 
       } catch (error) {
 
-        if (error.code === '')
         return reply.status(500).send({
           msg: 'unknown.error'
         })
